@@ -2,7 +2,12 @@ package jovisimons.dekeet.DrinkService.service;
 
 import jovisimons.dekeet.DrinkService.DrinkRepo;
 import jovisimons.dekeet.DrinkService.model.Drink;
+import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
+
+@Service
 public class DrinkService {
     final
     DrinkRepo repo;
@@ -12,13 +17,10 @@ public class DrinkService {
     }
 
     public void SetDrankje(Drink drankje){
-        Drink exDrankje = repo.findByDatumAndDrankje(drankje.getDate(), drankje.getDrankje());
-        if(exDrankje == null){
-            repo.save(drankje);
-        }
-        else {
-            exDrankje.setAantal(exDrankje.getAantal()+1);
-            repo.save(exDrankje);
-        }
+        repo.insert(drankje);
+    }
+
+    public List<Drink> GetDrankjeByEventId(String eventId){
+        return repo.findAllById(Collections.singleton(eventId));
     }
 }
