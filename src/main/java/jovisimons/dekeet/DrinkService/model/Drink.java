@@ -1,11 +1,8 @@
 package jovisimons.dekeet.DrinkService.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import jovisimons.dekeet.DrinkService.LocalDateDeserializer;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
 
 @Document
 public class Drink {
@@ -15,8 +12,6 @@ public class Drink {
     private String eventId;
     private String userId;
     private Integer aantal;
-    @JsonDeserialize(using= LocalDateDeserializer.class)
-    private LocalDate datum;
     private String drankje;
 
     public Drink() {
@@ -44,14 +39,6 @@ public class Drink {
 
     public void setAantal(Integer aantal) {
         this.aantal = aantal;
-    }
-
-    public LocalDate getDate() {
-        return datum;
-    }
-
-    public void SetDate(LocalDate datum) {
-        this.datum = datum;
     }
 
     public String getDrankje() {
